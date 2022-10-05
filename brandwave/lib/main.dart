@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "package:brandwave/pages/homePage.dart";
 import "package:brandwave/pages/signInPage.dart";
 import "package:brandwave/pages/signUpPage.dart";
+import "package:brandwave/pages/bookSpace.dart";
 
 void main() => runApp(const MyApp());
 
@@ -21,12 +22,12 @@ class _MyAppState extends State<MyApp> {
         primaryColor: Colors.white,
         accentColor: Colors.black,
       ),
-      initialRoute: "create/",
+      initialRoute: "/",
       routes: {
         "/": (context) => const HomePage(),
-        // "/": (context) => const SignInPage(),
-        // "/signUp": (context) => const SignUpPage(),
-        // "/create" : (context) => CreatePage()
+        "/signin": (context) => const SignInPage(),
+        "/signUp": (context) => const SignUpPage(),
+        "/bookSpace" : (context) => const BookAdSpace(),
       },
     );
   }

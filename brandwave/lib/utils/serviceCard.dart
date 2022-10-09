@@ -19,7 +19,7 @@ class ServiceCard extends StatelessWidget {
       onTap: () => Navigator.pushNamed(context, route),
       child: Card(
         child: Container(
-          width: 150.0,
+          width: 170.0,
           decoration: BoxDecoration(
             color: const Color.fromARGB(255, 255, 255, 255),
             borderRadius: BorderRadius.circular(8),

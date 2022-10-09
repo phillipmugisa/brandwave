@@ -2,7 +2,8 @@ import "package:flutter/material.dart";
 import "package:brandwave/pages/homePage.dart";
 import "package:brandwave/pages/signInPage.dart";
 import "package:brandwave/pages/signUpPage.dart";
-import "package:brandwave/pages/bookSpace.dart";
+import "package:brandwave/pages/UploadPage.dart";
+import "package:brandwave/pages/selectLocation.dart";
 
 void main() => runApp(const MyApp());
 
@@ -27,7 +28,8 @@ class _MyAppState extends State<MyApp> {
         "/": (context) => const HomePage(),
         "/signin": (context) => const SignInPage(),
         "/signUp": (context) => const SignUpPage(),
-        "/bookSpace" : (context) => const BookAdSpace(),
+        "/uploadAd" : (context) => const UploadAd(),
+        "/selectLocation" : (context) => const LocationPage(),
       },
     );
   }

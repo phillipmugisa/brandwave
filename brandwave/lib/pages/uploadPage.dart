@@ -26,7 +26,7 @@ class _UploadAdState extends State<UploadAd> {
 
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
-      allowedExtensions: ['jpg', 'mp4'],
+      allowedExtensions: ['jpg', 'jpeg', 'png', 'mp4'],
         allowMultiple: true
     );
 
@@ -66,81 +66,84 @@ class _UploadAdState extends State<UploadAd> {
           physics: const BouncingScrollPhysics(),
           padding: const EdgeInsets.all(10.0),
           children: [
-            Card(
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      "Advertisement Details",
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w700,
-                        color: Color.fromARGB(220, 36, 37, 37),
-                      ),
-                    ),
-                    const SizedBox(height: 15.0,),
-                    TextFormField(
-                      style: const TextStyle(
-                        fontSize: 16.0,
-                        color: Color.fromARGB(255, 69, 161, 236),
-                      ),
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide(width: 3, color: Color.fromRGBO(33, 149, 243, 0.551))
+            Expanded(
+              flex: 2,
+              child: Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "Advertisement Details",
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w700,
+                          color: Color.fromARGB(220, 36, 37, 37),
                         ),
-                        labelText: "Name",
-                        labelStyle: TextStyle(
+                      ),
+                      const SizedBox(height: 15.0,),
+                      TextFormField(
+                        style: const TextStyle(
+                          fontSize: 16.0,
+                          color: Color.fromARGB(255, 69, 161, 236),
+                        ),
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(
+                              borderSide: BorderSide(width: 3, color: Color.fromRGBO(33, 149, 243, 0.551))
+                          ),
+                          labelText: "Name",
+                          labelStyle: TextStyle(
+                            fontSize: 16.0,
+                            color: Color.fromARGB(255, 53, 53, 53),
+                          ),
+                        ),
+                        onChanged: (text) => {
+                          setState(() => {
+                            advertName = text
+                          })
+                        },
+                      ),
+                      const SizedBox(height: 10.0,),
+                      TextFormField(
+                        style: const TextStyle(
                           fontSize: 16.0,
                           color: Color.fromARGB(255, 53, 53, 53),
                         ),
-                      ),
-                      onChanged: (text) => {
-                        setState(() => {
-                          advertName = text
-                        })
-                      },
-                    ),
-                    const SizedBox(height: 10.0,),
-                    TextFormField(
-                      style: const TextStyle(
-                        fontSize: 16.0,
-                        color: Color.fromARGB(255, 53, 53, 53),
-                      ),
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide(width: 3, color: Color.fromRGBO(33, 149, 243, 0.551))
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(
+                              borderSide: BorderSide(width: 3, color: Color.fromRGBO(33, 149, 243, 0.551))
+                          ),
+                          labelText: "Description",
+                          labelStyle: TextStyle(
+                            fontSize: 16.0,
+                            color: Color.fromARGB(255, 53, 53, 53),
+                          ),
                         ),
-                        labelText: "Description",
-                        labelStyle: TextStyle(
-                          fontSize: 16.0,
-                          color: Color.fromARGB(255, 53, 53, 53),
+                        keyboardType: TextInputType.multiline,
+                        maxLines: 6,
+                        minLines: 6,
+                        onChanged: (text) => {
+                          setState(() => {
+                            advertDescription = text
+                          })
+                        },
+                      ),
+                      const SizedBox(height: 10.0,),
+                      !filesSelected ?
+                      ElevatedButton(
+                        onPressed: () => selectFiles(),
+                        child: const Padding(
+                          padding: EdgeInsets.all(10.0),
+                          child: Text("Select Advert Files", style: TextStyle(fontSize: 17.0),),
                         ),
+                      ) :
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: files!.map((path) => Image.file(width: 150.0,height: 100.0,path)).toList()
                       ),
-                      keyboardType: TextInputType.multiline,
-                      maxLines: 6,
-                      minLines: 6,
-                      onChanged: (text) => {
-                        setState(() => {
-                          advertDescription = text
-                        })
-                      },
-                    ),
-                    const SizedBox(height: 10.0,),
-                    !filesSelected ?
-                    ElevatedButton(
-                      onPressed: () => selectFiles(),
-                      child: const Padding(
-                        padding: EdgeInsets.all(10.0),
-                        child: Text("Select Advert Files", style: TextStyle(fontSize: 17.0),),
-                      ),
-                    ) :
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: files!.map((path) => Image.file(width: 150.0,height: 100.0,path)).toList()
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -166,7 +169,11 @@ class _UploadAdState extends State<UploadAd> {
                     style: const ButtonStyle(
                       backgroundColor: MaterialStatePropertyAll<Color>(Colors.green),
                     ),
-                    onPressed: () => visitLocationPage(),
+                    onPressed: () => {
+                      if (advertName != null && advertName != null && files!.isNotEmpty) {
+                        visitLocationPage()
+                      }
+                    },
                     child: const Padding(
                       padding: EdgeInsets.all(10.0),
                       child: Text("Continue", style: TextStyle(fontSize: 17.0),),

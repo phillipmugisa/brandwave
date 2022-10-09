@@ -2,7 +2,7 @@ import "package:flutter/material.dart";
 import "package:brandwave/pages/homePage.dart";
 import "package:brandwave/pages/signInPage.dart";
 import "package:brandwave/pages/signUpPage.dart";
-import "package:brandwave/pages/UploadPage.dart";
+import "package:brandwave/pages/uploadPage.dart";
 import "package:brandwave/pages/selectLocation.dart";
 
 void main() => runApp(const MyApp());
@@ -21,7 +21,6 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData.light().copyWith(
         primaryColor: Colors.white,
-        accentColor: Colors.black,
       ),
       initialRoute: "/",
       routes: {

@@ -25,8 +25,8 @@ class _UploadAdState extends State<UploadAd> {
     });
 
     FilePickerResult? result = await FilePicker.platform.pickFiles(
-      type: FileType.custom,
-      allowedExtensions: ['jpg', 'mp4'],
+        type: FileType.custom,
+        allowedExtensions: ['jpg', 'png', 'mp4'],
         allowMultiple: true
     );
 
@@ -51,11 +51,11 @@ class _UploadAdState extends State<UploadAd> {
   }
 
   void visitLocationPage () {
-      Navigator.pushNamed(
-          context,
-          '/selectLocation',
-          arguments: AdvertScreenArguments(advertName, advertDescription, files)
-      );
+    Navigator.pushNamed(
+        context,
+        '/selectLocation',
+        arguments: AdvertScreenArguments(advertName, advertDescription, files)
+    );
   }
 
   @override
@@ -137,8 +137,8 @@ class _UploadAdState extends State<UploadAd> {
                       ),
                     ) :
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: files!.map((path) => Image.file(width: 150.0,height: 100.0,path)).toList()
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: files!.map((path) => Image.file(width: 150.0,height: 100.0,path)).toList()
                     ),
                   ],
                 ),
@@ -166,7 +166,11 @@ class _UploadAdState extends State<UploadAd> {
                     style: const ButtonStyle(
                       backgroundColor: MaterialStatePropertyAll<Color>(Colors.green),
                     ),
-                    onPressed: () => visitLocationPage(),
+                    onPressed: () => {
+                      if (advertName != null && advertName != null && files!.isNotEmpty) {
+                        visitLocationPage()
+                      }
+                    },
                     child: const Padding(
                       padding: EdgeInsets.all(10.0),
                       child: Text("Continue", style: TextStyle(fontSize: 17.0),),

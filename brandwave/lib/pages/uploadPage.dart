@@ -167,7 +167,7 @@ class _UploadAdState extends State<UploadAd> {
                       backgroundColor: MaterialStatePropertyAll<Color>(Colors.green),
                     ),
                     onPressed: () => {
-                      if (advertName != null && advertName != null && files!.isNotEmpty) {
+                      if (advertName != null && advertName != null) {
                         visitLocationPage()
                       }
                     },

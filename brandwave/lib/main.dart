@@ -9,6 +9,8 @@ import "package:firebase_core/firebase_core.dart";
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
+runApp(const MyApp());
 }
 
 // void main() => runApp(const MyApp());
@@ -28,7 +30,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData.light().copyWith(
         primaryColor: Colors.white,
       ),
-      initialRoute: "/",
+      initialRoute: "/signin",
       routes: {
         "/": (context) => const HomePage(),
         "/signin": (context) => const SignInPage(),

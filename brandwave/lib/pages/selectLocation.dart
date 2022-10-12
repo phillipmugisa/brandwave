@@ -17,10 +17,7 @@ class _LocationPageState extends State<LocationPage> {
 
 
   Future getLocationName(Position clientPosition) async {
-
-    print("starting ");
     return await placemarkFromCoordinates(clientPosition.latitude, clientPosition.longitude, localeIdentifier: "en");
-
   }
 
   Future getClientLocation () async {

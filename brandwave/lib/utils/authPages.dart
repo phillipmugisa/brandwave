@@ -25,7 +25,7 @@ class AuthPageStarter extends StatelessWidget {
             "Mobile Advertisement",
             style: TextStyle(
               fontSize: 16.0,
-              color: Color.fromARGB(255, 69, 161, 236),
+                color: Colors.black45
             ),
           ),
         ],
@@ -35,10 +35,34 @@ class AuthPageStarter extends StatelessWidget {
 }
 
 
-class SignInForm extends StatelessWidget {
+class SignInForm extends StatefulWidget {
   const SignInForm({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<SignInForm> createState() => _SignInFormState();
+}
+
+class _SignInFormState extends State<SignInForm> {
+  final emailController = TextEditingController();
+
+  final passwordController = TextEditingController();
+
+  Future signIn() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: emailController.text.trim(),
+      password: passwordController.text.trim(),
+    );
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,11 +86,12 @@ class SignInForm extends StatelessWidget {
               fontSize: 16.0,
               color: Color.fromARGB(255, 69, 161, 236),
             ),
+            controller: emailController,
             decoration: const InputDecoration(
               border: UnderlineInputBorder(
                 borderSide: BorderSide(width: 3, color: Color.fromRGBO(33, 149, 243, 0.551))
               ),
-              labelText: "Username",
+              labelText: "Email",
               labelStyle: TextStyle(
                 fontSize: 16.0,
                 color: Color.fromARGB(255, 69, 161, 236),
@@ -80,6 +105,7 @@ class SignInForm extends StatelessWidget {
               fontSize: 16.0,
               color: Color.fromARGB(255, 69, 161, 236),
             ),
+            controller: passwordController,
             decoration: const InputDecoration(
               border: UnderlineInputBorder(
                 borderSide: BorderSide(width: 3, color: Color.fromRGBO(33, 149, 243, 0.551))

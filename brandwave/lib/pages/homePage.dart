@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
   static const List<Widget>_widgetOptions = [
     AppIntro(),
     AdvertList(),
-    Text("Profile"),
+    Profile(),
   ];
 
   void _onItemTapped(int index) {
@@ -83,9 +83,9 @@ class AppIntro extends StatelessWidget {
                       Text(
                         "Brandwave",
                         style: TextStyle(
-                          fontSize: 20.0,
-                          color: Color.fromARGB(255, 0, 0, 0),
-                          fontWeight: FontWeight.w500
+                            fontSize: 20.0,
+                            color: Color.fromARGB(255, 0, 0, 0),
+                            fontWeight: FontWeight.w500
                         ),
                       ),
                       Divider(height: 5.0,color: Colors.transparent,),
@@ -118,8 +118,8 @@ class AppIntro extends StatelessWidget {
                 child: Text(
                   "Our Services",
                   style: TextStyle(
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.w600,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w600,
                     color: Color.fromARGB(220, 36, 37, 37),
                   ),
                 ),
@@ -146,8 +146,8 @@ class AppIntro extends StatelessWidget {
                 child: Text(
                   "Recent Ads",
                   style: TextStyle(
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.w600,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w600,
                     color: Color.fromARGB(220, 36, 37, 37),
                   ),
                 ),
@@ -186,7 +186,7 @@ class _AdvertListState extends State<AdvertList> {
       physics: const BouncingScrollPhysics(),
       padding: const EdgeInsets.all(10.0),
       scrollDirection: Axis.vertical,
-      
+
 
       children: const [
         AdvertCard(
@@ -251,73 +251,180 @@ class AdvertCard extends StatelessWidget {
         ],
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  username,
-                  style: const TextStyle(
-                    fontSize: 15.0,
-                    fontWeight: FontWeight.w600
-                  ),
-                ),
-                Row(
-                  children: [
-                    const Icon(
-                      Icons.location_on_outlined,
-                      size: 15.0,
-                        color: Color.fromARGB(179, 148, 148, 148)
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    username,
+                    style: const TextStyle(
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.w600
                     ),
-                    const SizedBox(width: 5.0),
-                    Text(
-                      location,
-                      style: const TextStyle(
-                        fontSize: 12.0,
-                        fontWeight: FontWeight.normal,
-                        color: Color.fromARGB(179, 148, 148, 148)
+                  ),
+                  Row(
+                    children: [
+                      const Icon(
+                          Icons.location_on_outlined,
+                          size: 15.0,
+                          color: Color.fromARGB(179, 148, 148, 148)
                       ),
+                      const SizedBox(width: 5.0),
+                      Text(
+                        location,
+                        style: const TextStyle(
+                            fontSize: 12.0,
+                            fontWeight: FontWeight.normal,
+                            color: Color.fromARGB(179, 148, 148, 148)
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              height: 350,
+              width: 350,
+              child: FittedBox(
+                fit: BoxFit.fill,
+                child: Image.network(
+                  advertImageUrl,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    advertName,
+                    style: const TextStyle(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w600
+                    ),
+                  ),
+                  const SizedBox(height: 2.5),
+                  Text(
+                    advertDescription,
+                    style: const TextStyle(
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.normal,
+                        color: Color.fromRGBO(0, 0, 0, .7),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ]
+      ),
+    );
+  }
+}
+
+class Profile extends StatefulWidget {
+  const Profile({Key? key}) : super(key: key);
+
+  @override
+  State<Profile> createState() => _ProfileState();
+}
+
+class _ProfileState extends State<Profile> {
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+        child: Scaffold(
+          backgroundColor: const Color.fromRGBO(255, 255, 255, 0.7),
+          body: ListView(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(100.0),
+                      child: Container(
+                        width: 150.0,
+                        height: 150.0,
+                        child: FittedBox(
+                          child: Image.asset(
+                            "assets/images/profiledefault.png",
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+                padding: const EdgeInsets.all(20.0),
+                decoration: BoxDecoration(
+                  color: const Color.fromRGBO(255, 255, 255, 0.5),
+                  borderRadius: BorderRadius.circular(5.0),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Color.fromARGB(62, 202, 202, 202),
+                      spreadRadius: 2,
+                      blurRadius: 2,
+                      offset: Offset(0, 3), // changes position of shadow
                     ),
                   ],
                 ),
-              ],
-            ),
-          ),
-          FittedBox(
-            fit: BoxFit.fitWidth,
-            child: Image.network(
-              advertImageUrl,
-              height: 200.0,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  advertName,
-                  style: const TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.w600
-                  ),
+                child: Column(
+                  children: const [
+                    ProfileDetail(label: "Username", value: "Andrew"),
+                    SizedBox(height: 20.0),
+                    ProfileDetail(label: "Full Name", value: "Kikulwe Andrew"),
+                    SizedBox(height: 20.0),
+                    ProfileDetail(label: "Email", value: "kikulweandrew@gmail.com"),
+                  ],
                 ),
-                const SizedBox(height: 2.5),
-                Text(
-                  advertDescription,
-                  style: const TextStyle(
-                    fontSize: 14.0,
-                    fontWeight: FontWeight.normal
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ]
-      ),
+        )
+    );
+  }
+}
+
+class ProfileDetail extends StatelessWidget {
+
+  final String label;
+  final String value;
+
+  const ProfileDetail({
+    required this.label,
+    required this.value,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Text(
+            "$label:",
+            style: const TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: 18.0
+            )
+        ),
+        const SizedBox(width: 10.0),
+        Text(
+            value,
+            style: const TextStyle(
+                fontWeight: FontWeight.normal,
+                fontSize: 18.0,
+              color: Colors.black45
+            )
+        ),
+      ],
     );
   }
 }

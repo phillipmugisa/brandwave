@@ -17,10 +17,7 @@ class _LocationPageState extends State<LocationPage> {
 
 
   Future getLocationName(Position clientPosition) async {
-    
-    // return await placemarkFromCoordinates(clientPosition.latitude, clientPosition.longitude, localeIdentifier: "en");
-
-    return await placemarkFromCoordinates(clientPosition.latitude, clientPosition.longitude);
+    return await placemarkFromCoordinates(clientPosition.latitude, clientPosition.longitude, localeIdentifier: "en");
   }
 
   Future getClientLocation () async {
@@ -46,17 +43,17 @@ class _LocationPageState extends State<LocationPage> {
 
 
     getClientLocation()
-      .then((clientPosition) => {
-        getLocationName(clientPosition)
+        .then((clientPosition) => {
+      getLocationName(clientPosition)
           .then((placements) => {
-            setState(() {
-              print("getting location name");
-              print("$placements");
-              coordinates = clientPosition;
-              // coordinates = clientPosition;
-            })
-          })
-      });
+        setState(() {
+          print("getting location name");
+          print("$placements");
+          coordinates = clientPosition;
+          // coordinates = clientPosition;
+        })
+      })
+    });
   }
 
 
@@ -98,16 +95,16 @@ class _LocationPageState extends State<LocationPage> {
                                     Text(
                                       "Current Location: ",
                                       style: TextStyle(
-                                        fontSize: 16.0,
-                                        fontWeight: FontWeight.w500
+                                          fontSize: 16.0,
+                                          fontWeight: FontWeight.w500
                                       ),
                                     ),
                                     SizedBox(width: 5.0),
                                     Text(
                                       "Kampala",
                                       style: TextStyle(
-                                        fontSize: 18.0,
-                                        fontWeight: FontWeight.w500
+                                          fontSize: 18.0,
+                                          fontWeight: FontWeight.w500
                                       ),
                                     ),
                                   ],

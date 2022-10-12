@@ -25,8 +25,8 @@ class _UploadAdState extends State<UploadAd> {
     });
 
     FilePickerResult? result = await FilePicker.platform.pickFiles(
-      type: FileType.custom,
-      allowedExtensions: ['jpg', 'jpeg', 'png', 'mp4'],
+        type: FileType.custom,
+        allowedExtensions: ['jpg', 'png', 'mp4'],
         allowMultiple: true
     );
 
@@ -51,11 +51,11 @@ class _UploadAdState extends State<UploadAd> {
   }
 
   void visitLocationPage () {
-      Navigator.pushNamed(
-          context,
-          '/selectLocation',
-          arguments: AdvertScreenArguments(advertName, advertDescription, files)
-      );
+    Navigator.pushNamed(
+        context,
+        '/selectLocation',
+        arguments: AdvertScreenArguments(advertName, advertDescription, files)
+    );
   }
 
   @override
@@ -142,8 +142,12 @@ class _UploadAdState extends State<UploadAd> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: files!.map((path) => Image.file(width: 150.0,height: 100.0,path)).toList()
                       ),
-                    ],
-                  ),
+                    ) :
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: files!.map((path) => Image.file(width: 150.0,height: 100.0,path)).toList()
+                    ),
+                  ],
                 ),
               ),
             ),

@@ -1,10 +1,12 @@
+import 'package:brandwave/services/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import "package:firebase_core/firebase_core.dart";
 
 class AuthPageStarter extends StatelessWidget {
   const AuthPageStarter({
     Key? key,
   }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,7 +38,7 @@ class AuthPageStarter extends StatelessWidget {
 
 
 class SignInForm extends StatefulWidget {
-  const SignInForm({
+  const   SignInForm({
     Key? key,
   }) : super(key: key);
 
@@ -49,12 +51,7 @@ class _SignInFormState extends State<SignInForm> {
 
   final passwordController = TextEditingController();
 
-  Future signIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: emailController.text.trim(),
-      password: passwordController.text.trim(),
-    );
-  }
+  final AuthService _auth = AuthService();
 
   @override
   void dispose() {
@@ -76,7 +73,7 @@ class _SignInFormState extends State<SignInForm> {
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 16.0,
-              color: Color.fromARGB(255, 58, 144, 214),
+              color: Color.fromARGB(255, 63, 63, 63),
               fontWeight: FontWeight.normal,
             ),
           ),
@@ -123,7 +120,16 @@ class _SignInFormState extends State<SignInForm> {
           ),
           const Divider(height: 15.0,color: Colors.transparent,),
           ElevatedButton(
-            onPressed: () => {},
+            onPressed: () async {
+              dynamic result = await _auth.signInAnon();
+              if (result == null) {
+                print("Error Signing in.");
+              }
+              else {
+                print("Signed in");
+                print(result);
+              }
+            },
             child: const Padding(
               padding: EdgeInsets.all(10.0),
               child: Text("Sign In", style: TextStyle(fontSize: 17.0),),

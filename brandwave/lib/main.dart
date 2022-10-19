@@ -10,7 +10,7 @@ Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-runApp(const MyApp());
+  runApp(const MyApp());
 }
 
 // void main() => runApp(const MyApp());

@@ -142,12 +142,8 @@ class _UploadAdState extends State<UploadAd> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: files!.map((path) => Image.file(width: 150.0,height: 100.0,path)).toList()
                       ),
-                    ) :
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: files!.map((path) => Image.file(width: 150.0,height: 100.0,path)).toList()
-                    ),
                   ],
+                  ),
                 ),
               ),
             ),

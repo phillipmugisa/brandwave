@@ -28,7 +28,6 @@ class SignInPage extends StatelessWidget {
               AuthPageStarter(),
               Divider(height: 5.0,color: Colors.transparent,),
               Divider(height: 1.0,color: Color.fromRGBO(33, 149, 243, 0.18),),
-              Divider(height: 10.0,color: Colors.transparent,),
               SignInForm()
             ],
           ),
